@@ -6,7 +6,7 @@ namespace cw3_kontenery.Models;
 public class LiquidContainer : ContainerBase
 {
     public LiquidContainer(double height, double depth, double cargoWeight, double ownWeight)
-        : base(height, depth, cargoWeight, ownWeight, ContainerType.Liquid) { }
+        : base(height, depth, cargoWeight, ownWeight, ContainerType.L) { }
     
     public bool IsHazardous { get; set; }
 

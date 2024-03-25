@@ -2,7 +2,7 @@
 
 public enum ContainerType
 {
-    Liquid, 
-    Gas,
-    Refrigerated,
+    L, 
+    G,
+    C,
 }
