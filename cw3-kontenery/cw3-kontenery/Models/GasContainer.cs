@@ -1,16 +1,20 @@
 ﻿using cw3_kontenery.Enum;
 using cw3_kontenery.Exceptions;
-using cw3_kontenery.Inteface;
+
 namespace cw3_kontenery.Models;
 
-public class LiquidContainer : ContainerBase
+public class GasContainer : ContainerBase
 {
-    public LiquidContainer(double height, double depth, double cargoWeight, double ownWeight)
-        : base(height, depth, cargoWeight, ownWeight, ContainerType.L) { }
-    
+    public double Pressure { get; }
     public bool IsHazardous { get; set; }
 
-    public override double MaximumLoad => IsHazardous ? 0.5 * base.MaximumLoad : 0.9 * base.MaximumLoad;
+    public GasContainer(double height, double depth, double cargoWeight, double ownWeight, double pressure)
+        : base(height, depth, cargoWeight, ownWeight, ContainerType.G)
+    {
+        Pressure = pressure;
+    }
+
+    public override double MaximumLoad => IsHazardous ? base.MaximumLoad * 0.5 : base.MaximumLoad * 0.9;
 
     public override void LoadCargo(double cargoWeight)
     {
@@ -35,6 +39,12 @@ public class LiquidContainer : ContainerBase
             return true;
         }
         return false;
+    }
+
+    public override void UnloadCargo()
+    {
+        base.UnloadCargo();
+        LoadCargo(base.MaximumLoad * 0.05); // Pozostawienie 5% gazu wewnątrz kontenera po rozładowaniu
     }
 
     private void NotifyDangerousSituation()
