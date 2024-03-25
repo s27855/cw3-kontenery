@@ -12,7 +12,7 @@ public abstract class ContainerBase : IHazardNotifier
     protected double Depth { get; }
     protected double CargoWeight { get; private set; }
     protected double OwnWeight { get; }
-    protected string SerialNumber { get; }
+    public string SerialNumber { get; }
     public ContainerType ContainerType { get; }
 
     protected ContainerBase(double height, double depth, double cargoWeight, double ownWeight, ContainerType containerType)

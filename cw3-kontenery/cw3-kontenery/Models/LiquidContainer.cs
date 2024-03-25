@@ -5,10 +5,12 @@ namespace cw3_kontenery.Models;
 
 public class LiquidContainer : ContainerBase
 {
-    public LiquidContainer(double height, double depth, double cargoWeight, double ownWeight)
+    public bool IsHazardous { get; set; }
+    
+    public LiquidContainer(double height, double depth, double cargoWeight, double ownWeight, bool isHazardous)
         : base(height, depth, cargoWeight, ownWeight, ContainerType.L) { }
     
-    public bool IsHazardous { get; set; }
+    
 
     public override double MaximumLoad => IsHazardous ? 0.5 * base.MaximumLoad : 0.9 * base.MaximumLoad;
 
