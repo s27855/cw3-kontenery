@@ -1,4 +1,6 @@
 ﻿using cw3_kontenery.Enum;
+using cw3_kontenery.Exceptions;
+using cw3_kontenery.Inteface;
 
 namespace cw3_kontenery.Models;
 
@@ -43,11 +45,20 @@ public abstract class ContainerBase : IHazardNotifier
         CargoWeight = 0;
     }
 
-    public abstract double MaximumLoad { get; }
-    public abstract double EmptyLoad { get; }
+    public virtual double MaximumLoad
+    {
+        get { throw new NotImplementedException(); }
+    }
+
+    public virtual double EmptyLoad
+    {
+        get { throw new NotImplementedException(); }
+    }
 
     public void NotifyDangerousSituation(string containerNumber)
     {
         Console.WriteLine($"Dangerous situation detected in container {containerNumber}");
     }
+    
+    
 }
